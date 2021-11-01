@@ -17,12 +17,12 @@ namespace OnlineLibrary.Models
 
         [Required(ErrorMessage = "Please enter your first name")]
         [Display(Name = "First name")]
-        [StringLength(50)]
+        [StringLength(20)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last name")]
-        [StringLength(50)]
+        [StringLength(20)]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please enter your address")]

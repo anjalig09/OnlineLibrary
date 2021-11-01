@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineLibrary.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineLibrary
 {
@@ -27,8 +28,8 @@ namespace OnlineLibrary
         {
             services.AddDbContext < AppDbContext >(options=>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             
-            services.AddControllersWithViews();
 
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -36,6 +37,7 @@ namespace OnlineLibrary
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddHttpContextAccessor();
             services.AddSession();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,6 +8,7 @@ namespace OnlineLibrary.Models
 {
     public class OrderRepository:IOrderRepository
     {
+        public  decimal OrderTotal;
         private readonly AppDbContext _appDbContext;
         private readonly ShoppingCart _shoppingCart;
         public OrderRepository(AppDbContext appDbContext, ShoppingCart shoppingCart)

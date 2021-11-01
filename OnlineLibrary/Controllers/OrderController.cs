@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineLibrary.Models;
-
+using OnlineLibrary.ViewModels;
 
 namespace OnlineLibrary.Controllers
 {
@@ -12,10 +12,14 @@ namespace OnlineLibrary.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
-        public OrderController(IOrderRepository orderRepository,ShoppingCart shoppingCart)
+        private readonly OrderRepository _orderRepository1;
+
+        public OrderController(IOrderRepository orderRepository,ShoppingCart shoppingCart,OrderRepository orderRepository1)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
+            _orderRepository1 = orderRepository1;
+            
         }
 
         public IActionResult Checkout()
@@ -43,10 +47,17 @@ namespace OnlineLibrary.Controllers
             return View(order);
         }
 
-        public IActionResult CheckoutComplete()
+        public IActionResult CheckoutComplete(Order order)
         {
-            ViewBag.CheckoutCompleteMessage = "Thankyou for the order.";
-            return View();
+
+            var orderViewModel = new OrderViewModel
+            {
+                OrderTotal = _orderRepository1.OrderTotal
+            };
+            return View(orderViewModel);
         }
+        
+
+        
     }
 }
