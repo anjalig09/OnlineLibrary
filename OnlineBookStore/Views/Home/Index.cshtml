@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model HomeViewModel
+@*<partial name="_Carousel" />*@
+
+
+<br />
+<h2>List of Books</h2>
+<br />
+<div class="row">
+    @foreach (var book in Model.AllBooks)
+    {
+        <partial name="_BookCard" model="book" />
+    }
+</div>
