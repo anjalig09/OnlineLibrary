@@ -29,7 +29,7 @@ namespace OnlineBookStore.Models
         //}
         public  List<ShoppingCartItem> GetShoppingCartItems(string userId)
         {
-            var items = _appDbContext.ShoppingCartItems.Where(e => e.UserID == userId).ToList();
+            var items = _appDbContext.ShoppingCartItems.Include(e=>e.Book).Where(e => e.UserID == userId).ToList();
             return items;
         }
         public void AddToCart(Book book, int quantity,string userId)

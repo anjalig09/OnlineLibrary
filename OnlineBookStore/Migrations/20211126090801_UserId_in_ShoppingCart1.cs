@@ -2,7 +2,7 @@
 
 namespace OnlineBookStore.Migrations
 {
-    public partial class userid_in_ShoppingCart1 : Migration
+    public partial class UserId_in_ShoppingCart1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

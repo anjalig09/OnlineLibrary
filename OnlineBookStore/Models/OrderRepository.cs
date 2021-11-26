@@ -9,11 +9,11 @@ namespace OnlineBookStore.Models
     {
         public  decimal OrderTotal;
         private readonly AppDbContext _appDbContext;
-        private readonly ShoppingCart _shoppingCart;
-        public OrderRepository(AppDbContext appDbContext)
+        private readonly IShoppingCartRepository _shoppingCart;
+        public OrderRepository(AppDbContext appDbContext,IShoppingCartRepository shoppingCart)
         {
             _appDbContext = appDbContext;
-            //_shoppingCart = shoppingCart;
+            _shoppingCart = shoppingCart;
         }
         public Order CreateOrder(Order order,string userId)
         {
@@ -36,6 +36,10 @@ namespace OnlineBookStore.Models
             return order;
             
 
+        }
+        public void ClearCart(string userId)
+        {
+            _shoppingCart.ClearCart(userId);
         }
     }
 }
