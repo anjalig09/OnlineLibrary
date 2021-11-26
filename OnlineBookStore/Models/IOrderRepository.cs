@@ -7,6 +7,6 @@ namespace OnlineBookStore.Models
 {
     public interface IOrderRepository
     {
-        void CreateOrder(Order order);
+        Order CreateOrder(Order order,string userId);
     }
 }

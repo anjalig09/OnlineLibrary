@@ -1,3 +1,9 @@
-﻿@*@model OrderViewModel
-<button> Pay @Model.OrderTotal</button>*@
-<h1>@ViewBag.CheckoutCompleteMessage </h1>
+﻿@model OrderViewModel
+<form asp-action="PaymentComplete" style="text-align:center">
+    <br />
+    <h5>You're just one step away from your order.</h5>
+    <h6>Complete your Payment</h6>
+    <br />
+    <button class="btn btn-primary"> Pay @Model.OrderTotal</button>
+</form>
+

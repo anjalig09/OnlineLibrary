@@ -11,6 +11,9 @@
 <div class="row">
     @foreach (var book in Model.AllBooks)
     {
-        <partial name="_BookCard" model="book" />
+        <div class="col-sm-4">
+            <partial name="_BookCard" model="book" />
+        </div>
+        
     }
 </div>

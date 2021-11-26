@@ -9,7 +9,8 @@ namespace OnlineBookStore.Models
     {
         public int ShoppingCartItemId { get; set; }
         public Book Book { get; set; }
-        public int Amount { get; set; }
-        public string ShoppingCartId { get; set; }
+        public int Quantity { get; set; }
+        public DateTime? ExpiryDate { get; set; }
+        public string UserID { get; set; }
     }
 }

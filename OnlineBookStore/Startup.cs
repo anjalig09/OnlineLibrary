@@ -33,15 +33,18 @@ namespace OnlineBookStore
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IShoppingCartRepository, ShoppingCart>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            
+            //services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
             
             services.AddSession();
 
             
             services.AddControllersWithViews();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddRazorPages();
+           
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
         }
 

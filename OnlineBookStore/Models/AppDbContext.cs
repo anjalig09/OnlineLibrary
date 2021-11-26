@@ -40,7 +40,7 @@ namespace OnlineBookStore.Models
                 LongDescription =
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
                 CategoryId = 1,
-                ImageUrl = "https://cartoonresearch.com/wp-content/uploads/2017/05/tj1.jpg",
+                ImageUrl = ".\\Images\tj1.jpg",
                 InStock = true,
 
             });
@@ -70,7 +70,7 @@ namespace OnlineBookStore.Models
                 LongDescription =
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                 CategoryId = 3,
-                ImageUrl = "https://images1.penguinrandomhouse.com/cover/9780451530578",
+                ImageUrl = ".\\Images\a-tale-of-two-cities.jpg",
                 InStock = true,
 
             });

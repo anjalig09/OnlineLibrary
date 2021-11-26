@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color:darkgrey">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/Images/logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                OnlineBookStore
+        </a>
+        
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-controller="Book" asp-action="List">Book</a>
+                </li>
+            </ul>
+            <ul  class="navbar-nav flex-grow-1">
+                <partial name="_LoginPartial" />
+            </ul>
+           
+        </div>
+    </div>
+</nav>

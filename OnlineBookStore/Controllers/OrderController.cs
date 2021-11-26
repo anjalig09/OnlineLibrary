@@ -12,14 +12,14 @@ namespace OnlineBookStore.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
-        //private readonly OrderRepository _orderRepository1;
+        
 
         public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
-            //_orderRepository1 = orderRepository1;
-            
+           
+
         }
 
         public IActionResult Checkout()
@@ -28,39 +28,42 @@ namespace OnlineBookStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order)
+        public IActionResult Checkout(Order order,string userId)
         {
-            var items = _shoppingCart.GetShoppingCartItems();
-            _shoppingCart.ShoppingCartItems = items;
+            //var items = _shoppingCart.GetShoppingCartItems();
+            //_shoppingCart.ShoppingCartItems = items;
+            Order newOrder;
 
-            if (_shoppingCart.ShoppingCartItems.Count == 0)
-            {
-                ModelState.AddModelError("", "Your cart is empty, Add some Books");
-            }
+            //if (_shoppingCart.ShoppingCartItems.Count == 0)
+            //{
+            //    ModelState.AddModelError("", "Your cart is empty, Add some Books");
+            //}
 
             if (ModelState.IsValid)
             {
-                _orderRepository.CreateOrder(order);
-                _shoppingCart.ClearCart();
-                return RedirectToAction("CheckoutComplete");
+                 newOrder=_orderRepository.CreateOrder(order,userId);
+                _shoppingCart.ClearCart(userId);
+                return View("CheckoutComplete",new OrderViewModel { order = newOrder, OrderTotal = newOrder.OrderTotal });
             }
             return View(order);
         }
 
-        public IActionResult CheckoutComplete()
+        
+
+        public ViewResult CheckoutComplete(Order order)
         {
-            ViewBag.CheckoutCompleteMessage = "Thanks for your order.";
-            return View();
+
+            var orderViewModel = new OrderViewModel
+            {
+                OrderTotal = order.OrderTotal
+            };
+            return View(orderViewModel);
         }
 
-        //public ViewResult CheckoutComplete(Order order)
-        //{
-
-        //    var orderViewModel = new OrderViewModel
-        //   {
-        //       OrderTotal = _orderRepository1.OrderTotal
-        //    };
-        //    return View(orderViewModel);
-        //}
+        public IActionResult PaymentComplete()
+        {
+            ViewBag.PaymentCompleteMessage = "Thankyou for the order.You will recieve books soon.";
+            return View();
+        }
     }
 }
