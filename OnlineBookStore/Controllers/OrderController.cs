@@ -11,10 +11,10 @@ namespace OnlineBookStore.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ShoppingCart _shoppingCart;
+        private readonly IShoppingCartRepository _shoppingCart;
         
 
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
+        public OrderController(IOrderRepository orderRepository, IShoppingCartRepository shoppingCart)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
@@ -42,7 +42,7 @@ namespace OnlineBookStore.Controllers
             if (ModelState.IsValid)
             {
                  newOrder=_orderRepository.CreateOrder(order,userId);
-                _shoppingCart.ClearCart(userId);
+                _orderRepository.ClearCart(userId);
                 return View("CheckoutComplete",new OrderViewModel { order = newOrder, OrderTotal = newOrder.OrderTotal });
             }
             return View(order);

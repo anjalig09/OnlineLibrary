@@ -10,8 +10,8 @@ using OnlineBookStore.Models;
 namespace OnlineBookStore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211126054214_userid_in_ShoppingCart12")]
-    partial class userid_in_ShoppingCart12
+    [Migration("20211126065616_UserId_in_ShoppingCart")]
+    partial class UserId_in_ShoppingCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -453,7 +453,7 @@ namespace OnlineBookStore.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserID")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ShoppingCartItemId");

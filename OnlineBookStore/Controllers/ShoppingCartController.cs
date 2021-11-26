@@ -12,6 +12,7 @@ using System.Security.Claims;
 
 namespace OnlineBookStore.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private readonly IBookRepository _bookRepository;
@@ -22,7 +23,7 @@ namespace OnlineBookStore.Controllers
             _bookRepository = bookRepository;
             _shoppingCart = shoppingCart;
         }
-        public ViewResult Index(ShoppingCart shoppingCart)
+        public ViewResult Index()
         {
             string userId =User.FindFirstValue(ClaimTypes.NameIdentifier); 
 
@@ -38,9 +39,10 @@ namespace OnlineBookStore.Controllers
             return View(shoppingCartViewModel);
         }
        
-        [Authorize]
-        public RedirectToActionResult AddToShoppingCart(int bookId,string userId)
+        
+        public RedirectToActionResult AddToShoppingCart(int bookId)
         {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var selectedBook = _bookRepository.AllBooks.FirstOrDefault(p => p.BookId == bookId);
            
             
