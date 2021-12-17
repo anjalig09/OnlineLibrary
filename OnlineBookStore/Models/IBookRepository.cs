@@ -9,5 +9,7 @@ namespace OnlineBookStore.Models
     {
         IEnumerable<Book> AllBooks { get; }
         Book GetBookById(int bookId);
+        IEnumerable<Book> GetBookBySearchTerm(string searchTerm,int? page);
+        int PageCount();
     }
 }

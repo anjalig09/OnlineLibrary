@@ -1,16 +1,63 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using PagedList;
+@using PagedList.Core;
 @model BooksListViewModel
+
+
+<form method="get">
+    <div class="input-group" >
+
+        <input class="form-control"   asp-for="SearchTerm" />
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit" style="width:75px;">
+                Search
+            </button>
+        </div>
+    </div>
+</form>
 
 
 <h1>@Model.CurrentCategory</h1>
 <div class="row">
-    
-    @foreach (var book in Model.Books)
+    @if (Model.Books.Count() != 0)
     {
-        <div class="col-sm-4">
-            <partial name="_BookCard" model="book" />
+        foreach (var book in Model.Books)
+        {
+            <div class="col-sm-4">
+                <partial name="_BookCard" model="book" />
+            </div>
+        }
+    }
+    else
+    {
+        <div style="text-align:center">
+            <p> Not Found</p>
         </div>
+
+
     }
 </div>
+<ul class="pagination">
+    <li class="page-item disabled">
+    <a class="page-link" tabindex="-1">Previous</a>
+    </li>
+    @for (int i = 1; i <= Model.PageCount; i++)
+    {
+        
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("List",new { Page = i })">@i</a>
+        </li>
+        @*<li class="page-item active">
+                <a class="page-link" asp-controller="Book" asp-action="List">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" asp-controller="Book" asp-action="List">3</a></li>*@
+
+    }
+    <li class="page-item">
+        <a class="page-link">Next</a>
+    </li>
+
+</ul>
+   

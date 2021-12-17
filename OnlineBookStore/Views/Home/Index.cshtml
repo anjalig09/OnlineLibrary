@@ -2,14 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 @model HomeViewModel
-<partial name="_Carousel" />
-
+    <div>
+        <partial name="_Carousel" />
+    </div>
 
 <br />
 <h2>List of Books</h2>
 <br />
 <div class="row">
-    @foreach (var book in Model.AllBooks)
+    @foreach (var book in Model.TrendingBooks)
     {
         <div class="col-sm-4">
             <partial name="_BookCard" model="book" />

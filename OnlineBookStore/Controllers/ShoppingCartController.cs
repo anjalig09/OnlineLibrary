@@ -27,8 +27,6 @@ namespace OnlineBookStore.Controllers
         {
             string userId =User.FindFirstValue(ClaimTypes.NameIdentifier); 
 
-
-
             var items = _shoppingCart.GetShoppingCartItems(userId);
             
             var shoppingCartViewModel = new ShoppingCartViewModel
@@ -55,8 +53,9 @@ namespace OnlineBookStore.Controllers
             
            
         }
-        public RedirectToActionResult RemoveFromShoppingCart(int bookId,string userId)
+        public RedirectToActionResult RemoveFromShoppingCart(int bookId)
         {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var selectedBook = _bookRepository.AllBooks.FirstOrDefault(p => p.BookId == bookId);
             if (selectedBook != null)
             {

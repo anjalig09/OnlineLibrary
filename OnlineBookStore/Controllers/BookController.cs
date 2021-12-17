@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineBookStore.ViewModels;
+using PagedList;
+using PagedList.Core;
 
 namespace OnlineBookStore.Controllers
 {
@@ -12,17 +14,22 @@ namespace OnlineBookStore.Controllers
     {
         private readonly IBookRepository _bookRepository;
         private readonly ICategoryRepository _categoryRepository;
+        //public string SearchItem { get; set; }
         public BookController(IBookRepository bookRepository, ICategoryRepository categoryRepository)
         {
             _bookRepository = bookRepository;
             _categoryRepository = categoryRepository;
         }
-        public ViewResult List()
+        public ViewResult List(string searchTerm,int? page)
         {
-            BooksListViewModel booksListViewModel = new BooksListViewModel();
-            booksListViewModel.Books = _bookRepository.AllBooks;
-            ViewBag.CurrentCategory = "Cartoon";
-            return View(booksListViewModel);
+
+            BooksListViewModel booksListViewModel = new BooksListViewModel
+            {
+                Books = _bookRepository.GetBookBySearchTerm(searchTerm, page),
+                
+                };
+                
+                return View(booksListViewModel);    
         }
         public IActionResult Details(int id)
         {
@@ -33,5 +40,7 @@ namespace OnlineBookStore.Controllers
             }
             return View(book);
         }
+        
+        
     }
 }

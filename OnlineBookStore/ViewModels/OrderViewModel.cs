@@ -8,7 +8,7 @@ namespace OnlineBookStore.ViewModels
 {
     public class OrderViewModel
     {
-        public Order order { get; set; }
+        public Order Order { get; set; }
         public decimal OrderTotal { get; set; }
     }
 }

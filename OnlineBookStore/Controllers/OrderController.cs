@@ -4,6 +4,7 @@ using OnlineBookStore.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace OnlineBookStore.Controllers
@@ -28,12 +29,12 @@ namespace OnlineBookStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order,string userId)
+        public IActionResult Checkout(Order order)
         {
             //var items = _shoppingCart.GetShoppingCartItems();
             //_shoppingCart.ShoppingCartItems = items;
             Order newOrder;
-
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //if (_shoppingCart.ShoppingCartItems.Count == 0)
             //{
             //    ModelState.AddModelError("", "Your cart is empty, Add some Books");
@@ -43,7 +44,7 @@ namespace OnlineBookStore.Controllers
             {
                  newOrder=_orderRepository.CreateOrder(order,userId);
                 _orderRepository.ClearCart(userId);
-                return View("CheckoutComplete",new OrderViewModel { order = newOrder, OrderTotal = newOrder.OrderTotal });
+                return View("CheckoutComplete",new OrderViewModel { Order = newOrder, OrderTotal = newOrder.OrderTotal });
             }
             return View(order);
         }
