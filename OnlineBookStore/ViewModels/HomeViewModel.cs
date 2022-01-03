@@ -8,9 +8,9 @@ namespace OnlineBookStore.ViewModels
 {
     public class HomeViewModel
     {
-        //public IEnumerable<Book> AllBooks { get; set; }
+        public IEnumerable<Book> AllBooks { get; set; }
       
         public OrderDetail OrderDetail { get; set; }
-        public IEnumerable<Book> TrendingBooks { get; set; }
+        public List<Book> TrendingBooks { get; set; }
     }
 }

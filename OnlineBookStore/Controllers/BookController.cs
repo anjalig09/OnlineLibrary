@@ -20,12 +20,12 @@ namespace OnlineBookStore.Controllers
             _bookRepository = bookRepository;
             _categoryRepository = categoryRepository;
         }
-        public ViewResult List(string searchTerm,int? page)
+        public ViewResult List(string searchTerm,int? page,string sort)
         {
 
             BooksListViewModel booksListViewModel = new BooksListViewModel
             {
-                Books = _bookRepository.GetBookBySearchTerm(searchTerm, page),
+                Books = _bookRepository.GetBookBySearchTerm(searchTerm, page,sort)
                 
                 };
                 
