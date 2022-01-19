@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Identity;
+using OnlineBookStore.Areas.Admin.Repository;
 
 namespace OnlineBookStore
 {
@@ -31,10 +32,11 @@ namespace OnlineBookStore
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default Connection")));
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
-            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<Models.IBookRepository, Models.BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IShoppingCartRepository, ShoppingCart>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<Areas.Admin.Repository.IAdminBookRepository, Areas.Admin.Repository.AdminBookRepository>();
             
             //services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
             
@@ -73,10 +75,9 @@ namespace OnlineBookStore
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+
                     name: "areas",
-                    
-                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
-                    );
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

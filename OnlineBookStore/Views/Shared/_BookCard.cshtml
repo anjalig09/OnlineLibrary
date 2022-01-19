@@ -7,7 +7,7 @@
         <img src="@Model.ImageUrl" class="card-img-top img-fluid" alt="" style="max-height:445px;">
         <div class="card-body">
             <h3 class="card-title"> @Model.Name</h3>
-            <h4>@Model.Category.CategoryName</h4>
+            @*<h4>@Model.Category.CategoryName</h4>*@
             <h6>@Model.Price.ToString("c")</h6>
             <p class="card-text">Author:@Model.AuthorName</p>
             <p>@Model.ShortDescription</p>
@@ -19,6 +19,8 @@
                     <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@Model.BookId">Add to cart</a>
                 </div>
             </div>
+                
+            
         </div>
     </div>
 </div>

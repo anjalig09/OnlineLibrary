@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model OnlineBookStore.Areas.Admin.ViewModels.AdminBookViewModel
+
+<form asp - action="Edit" method="post" class="form-horizontal" role="form">
+    <h4>Fill out your details</h4>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    @Html.HiddenFor(e=>e.Book.BookId)
+    <div class="form-group">
+        <label asp-for="@Model.Book.Name" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="@Model.Book.Name" class="form-control" contenteditable="true" />
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Book.Price" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="@Model.Book.Price" class="form-control" contenteditable="true"/>
+
+        </div>
+    </div>
+    <div class="form-group col-md-4">
+        <label>Category</label>
+        <select asp-for="@Model.Book.CategoryId" asp-items="@(new SelectList(Model.CategoriesList, nameof(Category.CategoryId), nameof(Category.CategoryName)))" contenteditable="true" class="form-control">
+            <option contenteditable="true">Select</option>
+
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Book.AuthorName" class="col-md-2 control-label">Author</label>
+        <div class="col-md-5">
+            <input asp-for="@Model.Book.AuthorName" class="form-control" contenteditable="true"/>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Book.ShortDescription" class="col-md-2 control-label">Short Description</label>
+        <div class="col-md-5">
+            <input asp-for="@Model.Book.ShortDescription" class="form-control" contenteditable="true"/>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Book.ImageUrl" class="col-md-2 control-label">Image</label>
+        <div class="col-md-5">
+            <input asp-for="@Model.Book.ImageUrl" class="form-control"contenteditable="true" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Book.LongDescription" class="form-label"> Long Description</label>
+        <div class="col-md-5">
+            <textarea asp-for="@Model.Book.LongDescription" class="form-control" contenteditable="true" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+        </div>
+    </div>
+    <div>
+        <button asp-action="Update">Save</button>
+    </div>
+
+</form>

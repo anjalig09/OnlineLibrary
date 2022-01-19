@@ -2,23 +2,27 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model Book
-<div class="cardstyle">
-    <div class="card" >
-        <img src="@Model.ImageUrl" class="card-img-top img-fluid" alt="" style="max-height:445px;">
-        <div class="card-body">
-            <h3 class="card-title"> @Model.Name</h3>
-            <h4>@Model.Category.CategoryName</h4>
-            <h6>@Model.Price.ToString("c")</h6>
-            <p class="card-text">Author:@Model.AuthorName</p>
-            <p>@Model.ShortDescription</p>
-            <div class="row">
-                <div class="col-md-5">
-                    <a asp-controller="Book" asp-action="Details" asp-route-id="@Model.BookId" class="btn btn-primary">More</a>
-                </div>
-                <div class="col-md-6">
-                    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId="@Model.BookId">Add to cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+        
+        
+<tr>
+
+    <td class="text-center">@Model.BookId</td>
+    <td class="text-left">@Model.Name</td>
+    <td class="text-left">@Model.Category.CategoryName</td>
+    <td class="text-right">
+        @Model.Price.ToString("c")
+    </td>
+    <td>
+        <a asp-controller="AdminBook"asp-action="Edit" asp-route-id="@Model.BookId">Edit</a>
+        <a >Details</a>
+        <a asp-action="Delete" asp-route-id="@Model.BookId">Delete</a>
+    </td>
+
+</tr>
+
+        
+
+    
+   

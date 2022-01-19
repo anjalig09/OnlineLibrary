@@ -21,7 +21,7 @@ namespace OnlineBookStore.Models
         {
             get
             {
-                return _appDbContext.Books.Include(c => c.Category);
+                return _appDbContext.Books.Include(c => c.Category).Where(m => m.IsDeleted == false);
             }
         }
         public Book GetBookById(int bookId)

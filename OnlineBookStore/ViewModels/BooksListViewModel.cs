@@ -16,6 +16,8 @@ namespace OnlineBookStore.ViewModels
         public int? Page { get; set; }
         public int PageNo { get; }
         public string PriceSort { get; set; }
+        public Book Book { get; set; }
+        
 
     }
 }
