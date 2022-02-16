@@ -18,8 +18,14 @@ namespace OnlineBookStore.Areas.Admin.Repository
         }
         public void AddBook(Book book)
         {
-             _appDbContext.Books.Add(book);
-            _appDbContext.SaveChanges();
+            var books = _appDbContext.Books.Select(b => b.Name==book.Name).Any();
+            if (books == true)
+            {
+                _appDbContext.Books.Add(book);
+                _appDbContext.SaveChanges();
+            }
+            
+            
         }
         public Book EditBook(int bookId)
         {

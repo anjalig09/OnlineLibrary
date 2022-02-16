@@ -21,7 +21,7 @@ namespace OnlineBookStore.Models
         {
             get
             {
-                return _appDbContext.Books.Include(c => c.Category).Where(m => m.IsDeleted == false);
+                return _appDbContext.Books.Include(c => c.Category);
             }
         }
         public Book GetBookById(int bookId)
@@ -34,8 +34,6 @@ namespace OnlineBookStore.Models
             if (searchTerm != null)
             {
 
-                 
-                
                 return _appDbContext.Books.Include(e => e.Category).Where(s => s.Name.Contains(searchTerm) ||
                                                        s.AuthorName.Contains(searchTerm) ||
                                                        s.Category.CategoryName.Contains(searchTerm)).OrderBy(b => b.Price).ToPagedList(page ?? 1, 9);

@@ -37,6 +37,7 @@ namespace OnlineBookStore
             services.AddScoped<IShoppingCartRepository, ShoppingCart>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<Areas.Admin.Repository.IAdminBookRepository, Areas.Admin.Repository.AdminBookRepository>();
+            services.AddScoped<Areas.Admin.Repository.IAdminOrderRepository, Areas.Admin.Repository.AdminOrderRepository>();
             
             //services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
             

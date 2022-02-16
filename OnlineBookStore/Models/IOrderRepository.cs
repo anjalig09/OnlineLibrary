@@ -7,6 +7,8 @@ namespace OnlineBookStore.Models
 {
     public interface IOrderRepository
     {
+        IEnumerable<Order> AllOrders { get; }
+
         Order CreateOrder(Order order,string userId);
         void ClearCart(string userId);
     }

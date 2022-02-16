@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Order;
+<tr>
+    <td class="text-center">@Model.FirstName @Model.LastName</td>
+    <td class="text-left">@Model.AddressLine1 @Model.AddressLine2 @Model.City @Model.Country</td>
+    <td class="text-left">@Model.OrderTotal</td>
+    <td class="text-right">
+        @Model.OrderPlaced
+    </td>
+    <td>
+
+        <a asp-controller="AdminOrder" asp-action="Details" asp-route-id="@Model.OrderId">Details</a>
+
+    </td>
+</tr> 

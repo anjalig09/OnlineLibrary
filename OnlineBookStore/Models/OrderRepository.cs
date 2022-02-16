@@ -10,10 +10,20 @@ namespace OnlineBookStore.Models
         public  decimal OrderTotal;
         private readonly AppDbContext _appDbContext;
         private readonly IShoppingCartRepository _shoppingCart;
+
         public OrderRepository(AppDbContext appDbContext,IShoppingCartRepository shoppingCart)
         {
             _appDbContext = appDbContext;
             _shoppingCart = shoppingCart;
+        }
+        public IEnumerable<Order> AllOrders
+        {
+            get
+            {
+                return _appDbContext.Orders;
+            }
+
+
         }
         public Order CreateOrder(Order order,string userId)
         {
@@ -27,7 +37,11 @@ namespace OnlineBookStore.Models
                 {
                     Quantity = shoppingCartItem.Quantity,
                     BookId = shoppingCartItem.Book.BookId,
-                    Price = shoppingCartItem.Book.Price
+                    Price = shoppingCartItem.Book.Price,
+                    Name=shoppingCartItem.Book.Name,
+                    OrderPlaced=order.OrderPlaced,
+                    Total= (shoppingCartItem.Book.Price)*(shoppingCartItem.Quantity),
+                    
                 };
                 order.OrderDetails.Add(orderDetail);
             }
